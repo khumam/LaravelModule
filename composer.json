@@ -9,7 +9,6 @@
             "email": "id.khoerulumam@gmail.com"
         },
     ],
-    "require": {},
     "autoload": {
         "psr-4": {
             "KhoerulUmam\\StockModule\\": "src/"
@@ -22,5 +21,6 @@
             "src/public": "public/",
             "src/resources": "resources/"
         }
-    }
+    },
+    "require": {}
 }
