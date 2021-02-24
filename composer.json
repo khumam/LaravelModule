@@ -1,0 +1,7 @@
+{
+    "name": "khoerulumam/stockmodule",
+    "description": "Modul stock barang untuk modul Barra Dev Studio",
+    "type": "library",
+    "license": "MIT",
+    "require": {}
+}
