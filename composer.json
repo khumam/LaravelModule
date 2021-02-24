@@ -3,5 +3,24 @@
     "description": "Modul stock barang untuk modul Barra Dev Studio",
     "type": "library",
     "license": "MIT",
-    "require": {}
+     "authors": [
+        {
+            "name": "Khoerul Umam",
+            "email": "id.khoerulumam@gmail.com"
+        },
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "KhoerulUmam\\StockModule\\": "src/"
+        },
+    },
+    "extra": {
+        "copy-file": {
+            "src/app/": "app/",
+            "src/database": "database/",
+            "src/public": "public/",
+            "src/resources": "resources/"
+        }
+    }
 }
