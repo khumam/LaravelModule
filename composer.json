@@ -16,10 +16,10 @@
     },
     "extra": {
         "copy-file": {
-            "vendor/barradev/src/app/": "app/",
-            "vendor/barradev/src/database": "database/",
-            "vendor/barradev/src/public": "public/",
-            "vendor/barradev/src/resources": "resources/"
+            "vendor/barradev/stockmodule/src/app/": "app/",
+            "vendor/barradev/stockmodule/src/database": "database/",
+            "vendor/barradev/stockmodule/src/public": "public/",
+            "vendor/barradev/stockmodule/src/resources": "resources/"
         }
     },
     "require": {}
