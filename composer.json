@@ -3,11 +3,11 @@
     "description": "Modul stock barang untuk modul Barra Dev Studio",
     "type": "package",
     "license": "MIT",
-     "authors": [
+    "authors": [
         {
             "name": "Khoerul Umam",
             "email": "id.khoerulumam@gmail.com"
-        },
+        }
     ],
     "autoload": {
         "psr-4": {
