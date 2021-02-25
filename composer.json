@@ -23,5 +23,6 @@
         }
     },
     "require": {
-        "yajra/laravel-datatables-oracle": "^9.15"}
+        "yajra/laravel-datatables-oracle": "^9.15"
     }
+}
