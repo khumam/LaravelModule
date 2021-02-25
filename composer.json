@@ -15,11 +15,11 @@
         }
     },
     "extra": {
-        "copy-file": {
-            "vendor/barradev/stockmodule/src/app/": "app/",
-            "vendor/barradev/stockmodule/src/database": "database/",
-            "vendor/barradev/stockmodule/src/public": "public/",
-            "vendor/barradev/stockmodule/src/resources": "resources/"
+        "laravel": {
+            "providers": [
+                "BarraDev\\StockModule\\StockModuleServiceProvider"
+            ],
+            "aliases": {}
         }
     },
     "require": {}
