@@ -49,6 +49,7 @@ class StockModulePublishCommand extends Command
         $this->publishService();
         $this->publishView();
         $this->publishAssets();
+        $this->publishController();
 
         $this->info("Publishing Stock Module complete");
     }
@@ -85,7 +86,7 @@ class StockModulePublishCommand extends Command
             File::makeDirectory($targetPath, 0777, true, true);
         }
 
-        $this->publishDirectory(__DIR__ . '/database/models/', app()->path() . "/Models/");
+        $this->publishDirectory(__DIR__ . '/app/Models/', app()->path() . "/Models/");
     }
 
     /**
@@ -95,7 +96,7 @@ class StockModulePublishCommand extends Command
      */
     protected function publishMigrations()
     {
-        $this->publishDirectory(__DIR__ . '/database/migrations/', app()->databasePath() . "/migrations/");
+        $this->publishDirectory(__DIR__ . '/database/Migrations/', app()->databasePath() . "/migrations/");
     }
 
     /**
@@ -105,7 +106,13 @@ class StockModulePublishCommand extends Command
      */
     protected function publishView()
     {
-        $this->publishDirectory(__DIR__ . '/resources/views/', app()->resource_path() . "/views");
+        $targetPath = app()->resourcePath() . "/views/item";
+
+        if (!File::isDirectory($targetPath)) {
+            File::makeDirectory($targetPath, 0777, true, true);
+        }
+
+        $this->publishDirectory(__DIR__ . '/resources/views/item/', app()->resourcePath() . "/views/item/");
     }
 
     /**
@@ -121,7 +128,7 @@ class StockModulePublishCommand extends Command
             File::makeDirectory($targetPath, 0777, true, true);
         }
 
-        $this->publishDirectory(__DIR__ . '/database/Services/', app()->path() . "/Services/");
+        $this->publishDirectory(__DIR__ . '/app/Services/', app()->path() . "/Services/");
     }
 
     /**
@@ -131,12 +138,22 @@ class StockModulePublishCommand extends Command
      */
     protected function publishAssets()
     {
-        $targetPath = app()->public_path() . "/assets/";
+        $targetPath = app()->publicPath() . "/assets/js/";
 
         if (!File::isDirectory($targetPath)) {
             File::makeDirectory($targetPath, 0777, true, true);
         }
 
-        $this->publishDirectory(__DIR__ . '/public/assets/', app()->public_path() . "/assets/");
+        $this->publishDirectory(__DIR__ . '/public/assets/js/', app()->publicPath() . "/assets/js/");
+    }
+
+    /**
+     * Publish Service
+     * 
+     * @return
+     */
+    protected function publishController()
+    {
+        $this->publishDirectory(__DIR__ . '/app/Http/Controllers/', app()->path() . "/Http/Controllers/");
     }
 }
