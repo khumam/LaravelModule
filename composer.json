@@ -22,5 +22,7 @@
             "aliases": {}
         }
     },
-    "require": {}
+    "require": {
+        "yajra/laravel-datatables-oracle": "^9.15"
+    }
 }
