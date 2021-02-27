@@ -77,7 +77,7 @@
             order: [1, 'ASC'],
             ajax: {
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 url: "{{ route('item_list') }}",
             },
@@ -115,10 +115,9 @@
                         method: 'DELETE',
                         data: {
                             id: $(this).data('id'),
-                            _token: "{{ csrf_token() }}"
                         },
                         headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
                         },
                         success: function(res) {
                             Swal.fire({

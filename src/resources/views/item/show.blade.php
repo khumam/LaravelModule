@@ -16,9 +16,6 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#tab-edit">Edit Item</a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab-notification">Notification</a>
-        </li> -->
     </ul>
 </div>
 <div class="container">
@@ -159,7 +156,7 @@
             order: [1, 'ASC'],
             ajax: {
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 url: "{{ route('stock_list') }}",
                 data: {
@@ -206,10 +203,9 @@
                         data: {
                             id: $(this).data('id'),
                             itemid: $(this).data('itemid'),
-                            _token: "{{ csrf_token() }}"
                         },
                         headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
                         },
                         success: function(res) {
                             Swal.fire({

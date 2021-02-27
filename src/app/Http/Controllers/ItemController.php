@@ -37,7 +37,7 @@ class ItemController extends Controller
                         </button>
                     </div>";
             })
-            ->rawColumns(['artikel', 'action'])
+            ->rawColumns(['action'])
             ->addIndexColumn()
             ->make(true);
     }
