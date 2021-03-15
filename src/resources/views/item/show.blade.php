@@ -58,7 +58,7 @@
                             <p>Di bawah ini merupakan list transaksi item.</p>
                         </div>
                         <div class="col-md-4">
-                            <a class="btn btn-primary float-right" href="{{ route('stock_create') }}">Tambah transaksi</a>
+                            <a class="btn btn-primary float-right" href="{{ route('stock_create', $detail->id) }}">Tambah transaksi</a>
                         </div>
                     </div>
                 </div>
