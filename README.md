@@ -22,6 +22,7 @@ Tambahkan route berikut
 ```php
 Route::prefix('item')->group(function () {
     Route::get('/', [ItemController::class, 'index'])->name('item_page');
+    Route::get('/create', [ItemController::class, 'index'])->name('item_create');
     Route::post('/list', [ItemController::class, 'list'])->name('item_list');
     Route::post('store', [ItemController::class, 'store'])->name('item_store');
     Route::post('update', [ItemController::class, 'update'])->name('item_update');
@@ -31,6 +32,7 @@ Route::prefix('item')->group(function () {
 
 Route::prefix('stock')->group(function () {
     Route::get('/', [StockController::class, 'index'])->name('stock_page');
+    Route::get('/{id}/create', [StockController::class, 'create'])->name('stock_create');
     Route::post('/list', [StockController::class, 'list'])->name('stock_list');
     Route::post('store', [StockController::class, 'store'])->name('stock_store');
     Route::post('update', [StockController::class, 'update'])->name('stock_update');

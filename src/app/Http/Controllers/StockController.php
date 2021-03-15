@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Services\StockService;
 use Illuminate\Http\Request;
 use DataTables;
@@ -11,6 +12,13 @@ class StockController extends Controller
     public function index()
     {
         return view('admin.stock.index');
+    }
+
+    public function create($id)
+    {
+        $detail = Item::where('id', $id)->first();
+
+        return view('item.create_transaction', compact('detail'));
     }
 
     public function list(Request $request, StockService $stockService)
@@ -35,7 +43,7 @@ class StockController extends Controller
             $act = $stockService->store($request);
 
             if ($act) {
-                return redirect()->back()->with('success', 'Berhasil menambahkan transaksi', 'Stok akan dihitung otomatis');
+                return redirect()->route('item_show', $request->id)->with('success', 'Berhasil menambahkan transaksi', 'Stok akan dihitung otomatis');
             } else {
                 return redirect()->back()->with('error', 'Gagal menambahkan transaksi');
             }

@@ -58,7 +58,7 @@
                             <p>Di bawah ini merupakan list transaksi item.</p>
                         </div>
                         <div class="col-md-4">
-                            <button class="btn btn-primary float-right" data-toggle="modal" data-target="#dialogModal">Tambah transaksi</button>
+                            <a class="btn btn-primary float-right" href="{{ route('stock_create') }}">Tambah transaksi</a>
                         </div>
                     </div>
                 </div>
@@ -102,44 +102,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="dialogModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="dialogModalLabel">Tambah transaksi</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <i class="anticon anticon-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('stock_store') }}" id="formdata" method="POST">
-                    @csrf
-                    <input type="hidden" name="item_id" value="{{ $detail->id }}">
-                    <div class="form-group">
-                        <label for="invoice">No Invoice</label>
-                        <input type="text" name="invoice" id="invoice" placeholder="No Invoice" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="expired">Expired date</label>
-                        <input type="date" name="expired" id="expired" placeholder="Expired date" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Harga</label>
-                        <input type="number" name="price" id="price" placeholder="Harga item" min="0" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="total">Total</label>
-                        <input type="number" name="total" id="total" placeholder="Total item" min="0" required class="form-control">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" form="formdata" onclick="loading(this)">Simpan</button>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 @push('js')
 <script src="{{ url('assets/vendors/datatables/jquery.dataTables.min.js') }}"></script>
@@ -161,7 +123,8 @@
                 url: "{{ route('stock_list') }}",
                 data: {
                     id: "{{ $detail->id }}"
-                }
+                },
+                method: "POST"
             },
             columns: [{
                     data: 'DT_RowIndex',
@@ -221,9 +184,5 @@
             });
         })
     })
-
-    function loading(obj) {
-        $(obj).html('Menyimpan...');
-    }
 </script>
 @endpush

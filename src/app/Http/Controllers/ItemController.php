@@ -14,6 +14,11 @@ class ItemController extends Controller
         return view('item.index');
     }
 
+    public function create()
+    {
+        return view('item.create');
+    }
+
     public function show($id, ItemService $itemService)
     {
         $detail = $itemService->detail($id);
@@ -48,7 +53,7 @@ class ItemController extends Controller
             $act = $itemService->store($request);
 
             if ($act) {
-                return redirect()->back()->with('success', 'Berhasil menambahkan item');
+                return redirect()->route('item_page')->with('success', 'Berhasil menambahkan item');
             } else {
                 return redirect()->back()->with('error', 'Gagal menambahkan item');
             }
