@@ -91,7 +91,12 @@
                         <input type="hidden" name="id" value="{{ $detail->id }}">
                         <div class="form-group">
                             <label for="name">Nama item</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Nama item" value="{{ $detail->name }}">
+                            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nama item" value="{{ $detail->name }}">
+                            @error('name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary">Simpan</button>

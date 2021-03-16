@@ -53,7 +53,7 @@ class ItemController extends Controller
         $act = $itemService->store($request);
 
         if ($act) {
-            return route('item_page')->with('success', 'Berhasil menambahkan item');
+            return redirect()->route('item_page')->with('success', 'Berhasil menambahkan item');
         } else {
             return back()->with('error', 'Gagal menambahkan item');
         }

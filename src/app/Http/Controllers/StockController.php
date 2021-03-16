@@ -43,7 +43,7 @@ class StockController extends Controller
         $act = $stockService->store($request);
 
         if ($act) {
-            return route('item_show', $request->item_id)->with('success', 'Berhasil menambahkan transaksi', 'Stok akan dihitung otomatis');
+            return redirect()->route('item_show', $request->item_id)->with('success', 'Berhasil menambahkan transaksi', 'Stok akan dihitung otomatis');
         } else {
             return back()->with('error', 'Gagal menambahkan transaksi');
         }

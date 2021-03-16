@@ -24,7 +24,7 @@ class ItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:items,name,' . $this->id . ',id']
+            'name' => ['required', 'unique:items,name,' . $this->id . ',id,deleted_at,NULL']
         ];
     }
 
