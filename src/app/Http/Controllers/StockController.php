@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StockRequest;
 use App\Models\Item;
 use App\Services\StockService;
 use Illuminate\Http\Request;
@@ -37,33 +38,25 @@ class StockController extends Controller
             ->make(true);
     }
 
-    public function store(Request $request, StockService $stockService)
+    public function store(StockRequest $request, StockService $stockService)
     {
-        if ($stockService->checkDuplicate($request->invoice, $request->item_id)) {
-            $act = $stockService->store($request);
+        $act = $stockService->store($request);
 
-            if ($act) {
-                return redirect()->route('item_show', $request->id)->with('success', 'Berhasil menambahkan transaksi', 'Stok akan dihitung otomatis');
-            } else {
-                return redirect()->back()->with('error', 'Gagal menambahkan transaksi');
-            }
+        if ($act) {
+            return route('item_show', $request->item_id)->with('success', 'Berhasil menambahkan transaksi', 'Stok akan dihitung otomatis');
         } else {
-            return redirect()->back()->with('error', 'No Invoice harus berbeda');
+            return back()->with('error', 'Gagal menambahkan transaksi');
         }
     }
 
     public function update(Request $request, StockService $stockService)
     {
-        if ($stockService->checkDuplicate($request->invoice, $request->item_id, $request->id)) {
-            $act = $stockService->update($request);
+        $act = $stockService->update($request);
 
-            if ($act) {
-                return redirect()->back()->with('success', 'Berhasil mengubah transaksi');
-            } else {
-                return redirect()->back()->with('error', 'Gagal mengubah transaksi');
-            }
+        if ($act) {
+            return back()->with('success', 'Berhasil mengubah transaksi');
         } else {
-            return redirect()->back()->with('error', 'No Inoice harus berbeda');
+            return back()->with('error', 'Gagal mengubah transaksi');
         }
     }
 

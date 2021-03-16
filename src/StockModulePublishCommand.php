@@ -46,10 +46,11 @@ class StockModulePublishCommand extends Command
     {
         $this->publishModels();
         $this->publishMigrations();
-        $this->publishService();
-        $this->publishView();
+        $this->publishServices();
+        $this->publishViews();
         $this->publishAssets();
-        $this->publishController();
+        $this->publishControllers();
+        $this->publishRequests();
 
         $this->info("Publishing Stock Module complete");
     }
@@ -104,7 +105,7 @@ class StockModulePublishCommand extends Command
      *
      * @return void
      */
-    protected function publishView()
+    protected function publishViews()
     {
         $targetPath = app()->resourcePath() . "/views/item";
 
@@ -120,7 +121,7 @@ class StockModulePublishCommand extends Command
      * 
      * @return
      */
-    protected function publishService()
+    protected function publishServices()
     {
         $targetPath = app()->path() . "/Services/";
 
@@ -132,7 +133,7 @@ class StockModulePublishCommand extends Command
     }
 
     /**
-     * Publish Service
+     * Publish Assets
      * 
      * @return
      */
@@ -148,12 +149,22 @@ class StockModulePublishCommand extends Command
     }
 
     /**
-     * Publish Service
+     * Publish Controllers
      * 
      * @return
      */
-    protected function publishController()
+    protected function publishControllers()
     {
         $this->publishDirectory(__DIR__ . '/app/Http/Controllers/', app()->path() . "/Http/Controllers/");
+    }
+
+    /**
+     * Publish Requests
+     * 
+     * @return
+     */
+    protected function publishRequests()
+    {
+        $this->publishDirectory(__DIR__ . '/app/Http/Requests/', app()->path() . "/Http/Requests/");
     }
 }

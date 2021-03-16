@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ItemRequest;
 use App\Models\Stock;
 use App\Services\ItemService;
 use Illuminate\Http\Request;
@@ -47,33 +48,25 @@ class ItemController extends Controller
             ->make(true);
     }
 
-    public function store(Request $request, ItemService $itemService)
+    public function store(ItemRequest $request, ItemService $itemService)
     {
-        if ($itemService->checkDuplicate($request->name)) {
-            $act = $itemService->store($request);
+        $act = $itemService->store($request);
 
-            if ($act) {
-                return redirect()->route('item_page')->with('success', 'Berhasil menambahkan item');
-            } else {
-                return redirect()->back()->with('error', 'Gagal menambahkan item');
-            }
+        if ($act) {
+            return route('item_page')->with('success', 'Berhasil menambahkan item');
         } else {
-            return redirect()->back()->with('error', 'Item telah tersedia');
+            return back()->with('error', 'Gagal menambahkan item');
         }
     }
 
-    public function update(Request $request, ItemService $itemService)
+    public function update(ItemRequest $request, ItemService $itemService)
     {
-        if ($itemService->checkDuplicate($request->name, $request->id)) {
-            $act = $itemService->update($request);
+        $act = $itemService->update($request);
 
-            if ($act) {
-                return redirect()->back()->with('success', 'Berhasil mengubah item');
-            } else {
-                return redirect()->back()->with('error', 'Gagal mengubah item');
-            }
+        if ($act) {
+            return back()->with('success', 'Berhasil mengubah item');
         } else {
-            return redirect()->back()->with('error', 'Item telah tersedia');
+            return back()->with('error', 'Gagal mengubah item');
         }
     }
 

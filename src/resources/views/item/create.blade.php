@@ -28,7 +28,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="name">Name item</label>
-                        <input type="text" name="name" id="name" placeholder="Nama item" required class="form-control @error('name') is-invalid @enderror">
+                        <input type="text" name="name" id="name" placeholder="Nama item" required class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
                         @error('name')
                         <div class="invalid-feedback">
                             {{ $message }}

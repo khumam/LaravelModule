@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label for="invoice">No Invoice</label>
-                        <input type="text" name="invoice" id="invoice" placeholder="No Invoice" required class="form-control @error('invoice') is-invalid @enderror">
+                        <input type="text" name="invoice" id="invoice" placeholder="No Invoice" required class="form-control @error('invoice') is-invalid @enderror" value="{{ old('invoice') }}">
                         @error('invoice')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label for="expired">Expired date</label>
-                        <input type="date" name="expired" id="expired" placeholder="Expired date" required class="form-control @error('expired') is-invalid @enderror">
+                        <input type="date" name="expired" id="expired" placeholder="Expired date" required class="form-control @error('expired') is-invalid @enderror" value="{{ old('expired') }}">
                         @error('expired')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <label for="price">Harga</label>
-                        <input type="number" name="price" id="price" placeholder="Harga item" min="0" required class="form-control @error('price') is-invalid @enderror">
+                        <input type="number" name="price" id="price" placeholder="Harga item" min="0" required class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}">
                         @error('price')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group">
                         <label for="total">Total</label>
-                        <input type="number" name="total" id="total" placeholder="Total item" min="0" required class="form-control @error('total') is-invalid @enderror">
+                        <input type="number" name="total" id="total" placeholder="Total item" min="0" required class="form-control @error('total') is-invalid @enderror" value="{{ old('total') }}">
                         @error('total')
                         <div class="invalid-feedback">
                             {{ $message }}
