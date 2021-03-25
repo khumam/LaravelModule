@@ -24,7 +24,7 @@
                 <h4 class="card-title">Tambah Transaksi</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('stock_store') }}" id="formdata" method="POST">
+                <form action="{{ route('stock.store') }}" id="formdata" method="POST">
                     @csrf
                     <input type="hidden" name="item_id" value="{{ $detail->id }}">
                     <div class="form-group">

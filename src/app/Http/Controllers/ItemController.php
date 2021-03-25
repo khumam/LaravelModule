@@ -35,12 +35,14 @@ class ItemController extends Controller
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
                 return "<div class='btn-group'>
-                        <a class='btn btn-primary btn-sm detailButton' href='" . route('item_show', $data->id) . "'>
+                        <a class='btn btn-primary btn-sm detailButton' href='" . route('item.show', $data->id) . "'>
                             <i class='anticon anticon-search'></i>
                         </a>
-                        <button class='btn btn-danger btn-sm deleteButton' data-id='$data->id'>
-                            <i class='anticon anticon-delete'></i>
-                        </button>
+                        <form action='" . route('item.destroy', $data->id) . "' method='POST'>" . csrf_field() . " " . method_field('DELETE') . "
+                            <button class='btn btn-danger btn-sm deleteButton' data-id='$data->id'>
+                                <i class='anticon anticon-delete'></i>
+                            </button>
+                        </form>
                     </div>";
             })
             ->rawColumns(['action'])
@@ -53,15 +55,15 @@ class ItemController extends Controller
         $act = $itemService->store($request);
 
         if ($act) {
-            return redirect()->route('item_page')->with('success', 'Berhasil menambahkan item');
+            return redirect()->route('item.index')->with('success', 'Berhasil menambahkan item');
         } else {
             return back()->with('error', 'Gagal menambahkan item');
         }
     }
 
-    public function update(ItemRequest $request, ItemService $itemService)
+    public function update($id, ItemRequest $request, ItemService $itemService)
     {
-        $act = $itemService->update($request);
+        $act = $itemService->update($request, $id);
 
         if ($act) {
             return back()->with('success', 'Berhasil mengubah item');
@@ -70,14 +72,14 @@ class ItemController extends Controller
         }
     }
 
-    public function delete(Request $request, ItemService $itemService)
+    public function destroy($id, ItemService $itemService)
     {
-        $act = $itemService->delete($request);
+        $act = $itemService->delete($id);
 
         if ($act) {
-            return $this->sendNotificiation('success', 'Berhasil menghapus item');
+            return back()->with('success', 'Berhasil menghapus item');
         } else {
-            return $this->sendNotificiation('error', 'Gagal menghapus item');
+            return back()->with('error', 'Gagal menghapus item');
         }
     }
 }

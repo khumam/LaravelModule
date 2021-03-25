@@ -27,19 +27,19 @@ class ItemService
         );
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        return Item::where('id', $request->id)->update(
+        return Item::where('id', $id)->update(
             [
                 'name' => $request->name,
             ]
         );
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        Stock::where('item_id', $request->id)->delete();
-        return Item::where('id', $request->id)->delete();
+        Stock::where('item_id', $id)->delete();
+        return Item::where('id', $id)->delete();
     }
 
     public function transactions($id)

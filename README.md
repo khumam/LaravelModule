@@ -20,24 +20,12 @@ php artisan stockmodule:publish
 ## Route
 Tambahkan route berikut
 ```php
-Route::prefix('item')->group(function () {
-    Route::get('/', [ItemController::class, 'index'])->name('item_page');
-    Route::get('/create', [ItemController::class, 'create'])->name('item_create');
-    Route::post('/list', [ItemController::class, 'list'])->name('item_list');
-    Route::post('store', [ItemController::class, 'store'])->name('item_store');
-    Route::post('update', [ItemController::class, 'update'])->name('item_update');
-    Route::delete('delete', [ItemController::class, 'delete'])->name('item_delete');
-    Route::get('{id}/detail', [ItemController::class, 'show'])->name('item_show');
-});
+Route::resource('item', ItemController::class);
+Route::post('item/list', [ItemController::class, 'list'])->name('item.list');
 
-Route::prefix('stock')->group(function () {
-    Route::get('/', [StockController::class, 'index'])->name('stock_page');
-    Route::get('/{id}/create', [StockController::class, 'create'])->name('stock_create');
-    Route::post('/list', [StockController::class, 'list'])->name('stock_list');
-    Route::post('store', [StockController::class, 'store'])->name('stock_store');
-    Route::post('update', [StockController::class, 'update'])->name('stock_update');
-    Route::delete('delete', [StockController::class, 'delete'])->name('stock_delete');
-});
+Route::resource('stock', StockController::class)->except(['show', 'create']);
+Route::get('/{id}/create', [StockController::class, 'create'])->name('stock.create');
+Route::post('/list', [StockController::class, 'list'])->name('stock.list');
 ```
 
 ## Merubah view

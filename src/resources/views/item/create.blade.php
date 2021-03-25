@@ -24,7 +24,7 @@
                 <h4 class="card-title">Tambah Item</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('item_store') }}" id="formdata" method="POST">
+                <form action="{{ route('item.store') }}" id="formdata" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name item</label>

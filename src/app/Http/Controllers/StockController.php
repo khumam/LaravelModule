@@ -28,9 +28,11 @@ class StockController extends Controller
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
                 return "<div class='btn-group'>
-                        <button class='btn btn-danger btn-sm deleteButton' data-id='$data->id' data-itemid='$data->item_id'>
-                            <i class='anticon anticon-delete'></i>
-                        </button>
+                        <form action='" . route('stock.destroy', $data->id) . "' method='POST'>" . csrf_field() . " " . method_field('DELETE') . "
+                            <button class='btn btn-danger btn-sm deleteButton' data-id='$data->id' data-itemid='$data->item_id'>
+                                <i class='anticon anticon-delete'></i>
+                            </button>
+                        </form>
                     </div>";
             })
             ->rawColumns(['action'])
@@ -49,9 +51,9 @@ class StockController extends Controller
         }
     }
 
-    public function update(Request $request, StockService $stockService)
+    public function update($id, Request $request, StockService $stockService)
     {
-        $act = $stockService->update($request);
+        $act = $stockService->update($request, $id);
 
         if ($act) {
             return back()->with('success', 'Berhasil mengubah transaksi');
@@ -60,14 +62,14 @@ class StockController extends Controller
         }
     }
 
-    public function delete(Request $request, StockService $stockService)
+    public function destroy($id, StockService $stockService)
     {
-        $act = $stockService->delete($request);
+        $act = $stockService->delete($id);
 
         if ($act) {
-            return $this->sendNotificiation('success', 'Berhasil menghapus transkasi', 'Stok akan dihitung otomatis');
+            return back()->with('success', 'Berhasil menghapus transaksi');
         } else {
-            return $this->sendNotificiation('error', 'Gagal menghapus transkasi');
+            return back()->with('error', 'Gagal menghapus transaksi');
         }
     }
 }

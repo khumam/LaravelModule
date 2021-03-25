@@ -15,7 +15,7 @@
                         <p>Di bawah ini merupakan list item yang terdata di dalam sistem.</p>
                     </div>
                     <div class="col-md-4">
-                        <a href="{{ route('item_create') }}" class="btn btn-primary float-right">Tambah item</a>
+                        <a href="{{ route('item.create') }}" class="btn btn-primary float-right">Tambah item</a>
                     </div>
                 </div>
             </div>
@@ -77,38 +77,6 @@
                 }
             ]
         });
-
-        $(document).on('click', '.deleteButton', function() {
-            Swal.fire({
-                title: 'Apakah kamu yakin?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#E7472C'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url: "{{ route('item_delete') }}",
-                        method: 'DELETE',
-                        data: {
-                            id: $(this).data('id'),
-                        },
-                        headers: {
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                        },
-                        success: function(res) {
-                            Swal.fire({
-                                title: res.title,
-                                text: res.text,
-                                icon: res.icon,
-                            }).then((result) => {
-                                window.location.reload();
-                            });
-                        }
-                    });
-                }
-            });
-        })
-
     })
 </script>
 @endpush

@@ -15,6 +15,11 @@ class StockService
         $this->itemService = $itemService;
     }
 
+    public function get($id)
+    {
+        return Stock::where('id', $id)->first();
+    }
+
     public function getAllData()
     {
         return Stock::latest()->get();
@@ -40,9 +45,9 @@ class StockService
         return $this->itemService->calculateStock($request->item_id);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        Stock::where('id', $request->id)->update(
+        Stock::where('id', $id)->update(
             [
                 'expired' => $request->expired,
                 'invoice' => $request->invoice,
@@ -54,11 +59,12 @@ class StockService
         return $this->itemService->calculateStock($request->item_id);
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        Stock::where('id', $request->id)->delete();
+        Stock::where('id', $id)->delete();
+        $item = $this->get($id);
 
-        return $this->itemService->calculateStock($request->itemid);
+        return $this->itemService->calculateStock($item->item_id);
     }
 
     public function checkDuplicate($invoice = null, $item_id = null, $id = null)

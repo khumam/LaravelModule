@@ -58,7 +58,7 @@
                             <p>Di bawah ini merupakan list transaksi item.</p>
                         </div>
                         <div class="col-md-4">
-                            <a class="btn btn-primary float-right" href="{{ route('stock_create', $detail->id) }}">Tambah transaksi</a>
+                            <a class="btn btn-primary float-right" href="{{ route('stock.create', $detail->id) }}">Tambah transaksi</a>
                         </div>
                     </div>
                 </div>
@@ -86,9 +86,9 @@
                     <h4 class="card-title">Edit Item</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('item_update') }}" method="POST">
+                    <form action="{{ route('item.update', $detail->id) }}" method="POST">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $detail->id }}">
+                        @method('PUT')
                         <div class="form-group">
                             <label for="name">Nama item</label>
                             <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nama item" value="{{ $detail->name }}">
@@ -125,7 +125,7 @@
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
-                url: "{{ route('stock_list') }}",
+                url: "{{ route('stock.list') }}",
                 data: {
                     id: "{{ $detail->id }}"
                 },
@@ -157,37 +157,6 @@
             ]
         });
 
-        $(document).on('click', '.deleteButton', function() {
-            Swal.fire({
-                title: 'Apakah kamu yakin?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#E7472C'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url: "{{ route('stock_delete') }}",
-                        method: 'DELETE',
-                        data: {
-                            id: $(this).data('id'),
-                            itemid: $(this).data('itemid'),
-                        },
-                        headers: {
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                        },
-                        success: function(res) {
-                            Swal.fire({
-                                title: res.title,
-                                text: res.text,
-                                icon: res.icon,
-                            }).then((result) => {
-                                window.location.reload();
-                            });
-                        }
-                    });
-                }
-            });
-        })
     })
 </script>
 @endpush
