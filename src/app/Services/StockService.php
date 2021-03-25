@@ -61,8 +61,8 @@ class StockService
 
     public function delete($id)
     {
-        Stock::where('id', $id)->delete();
         $item = $this->get($id);
+        Stock::where('id', $id)->delete();
 
         return $this->itemService->calculateStock($item->item_id);
     }

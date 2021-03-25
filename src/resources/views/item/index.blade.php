@@ -54,7 +54,7 @@
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
-                url: "{{ route('item_list') }}",
+                url: "{{ route('item.list') }}",
                 method: "POST"
             },
             columns: [{
