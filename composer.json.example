@@ -1,0 +1,26 @@
+{
+    "name": "yourname/yourmodulename",
+    "description": "Your description",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Your Full Name",
+            "email": "Your Email"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "YourName\\YourModuleName\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "YourName\\YourModuleName\\YourModuleNameServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "require": {}
+}

@@ -1,31 +1,31 @@
 <?php
 /*
- * This file is part of the Stock Module package.
+ * This file is part of the Laravel Modoule Template.
  *
  * (c) Khoerul Umam <id.khoerulumam@gmail.com>
  *
  */
 
-namespace BarraDev\StockModule;
+namespace YourName\YourModuleName;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
-class StockModulePublishCommand extends Command
+class YourModuleNamePublishCommand extends Command
 {
     /**
      * The console command signature.
      *
      * @var string
      */
-    protected $signature = 'stockmodule:publish';
+    protected $signature = 'yourmodulename:publish';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Publish Stock Module assets from vendor packages';
+    protected $description = 'Your description';
 
     /**
      * Compatiblity for Lumen 5.5.
@@ -44,15 +44,16 @@ class StockModulePublishCommand extends Command
      */
     public function fire()
     {
+        // Disable if not necessary
+
         $this->publishModels();
         $this->publishMigrations();
         $this->publishServices();
         $this->publishViews();
-        $this->publishAssets();
         $this->publishControllers();
         $this->publishRequests();
 
-        $this->info("Publishing Stock Module complete");
+        $this->info("Publishing complete");
     }
 
 

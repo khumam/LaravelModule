@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the Stock Module package.
+ * This file is part of the Laravel Module Template.
  *
  * (c) Khoerul Umam <id.khoerulumam@gmail.com>
  *
  */
 
-namespace BarraDev\StockModule;
+namespace YourName\YourModuleName;
 
 use Illuminate\Support\ServiceProvider;
-use BarraDev\StockModule\StockModulePublishCommand;
+use YourName\YourModuleName\YourModuleNamePublishCommand;
 
 /**
  * Stock Module Service Provider
  */
-class StockModuleServiceProvider extends ServiceProvider
+class YourModuleNameServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -26,7 +26,7 @@ class StockModuleServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                StockModulePublishCommand::class,
+                YourModuleNamePublishCommand::class,
             ]);
         }
     }
